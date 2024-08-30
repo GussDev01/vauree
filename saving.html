@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorro Mensual</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="logo.png" alt="" class="logo">
+        <span class="company-name">Vauree</span>
+    </div>
+
+    <p>Ahorro mensual:</p>
+    <div class="input-container">
+        <input type="number" id="enero" placeholder="Enero">
+        <input type="number" id="febrero" placeholder="Febrero">
+        <input type="number" id="marzo" placeholder="Marzo">
+        <input type="number" id="abril" placeholder="Abril">
+        <input type="number" id="mayo" placeholder="Mayo">
+        <input type="number" id="junio" placeholder="Junio">
+        <input type="number" id="julio" placeholder="Julio">
+        <input type="number" id="agosto" placeholder="Agosto">
+        <input type="number" id="septiembre" placeholder="Septiembre">
+        <input type="number" id="octubre" placeholder="Octubre">
+        <input type="number" id="noviembre" placeholder="Noviembre">
+        <input type="number" id="diciembre" placeholder="Diciembre">
+        <button class="update-button" onclick="updateChart()">Actualizar Gráfica</button>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="grafica"></canvas>
+    </div>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
+    <style>
+        body {
+            background-image: url('https://vauree.com/media/wall2.png');
+            background-color: rgb(1, 1, 27);
+            background-size: contain;
+            background-position-y: 165%;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 0px;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+
+        .chart-container {
+            width: 90%;
+            height: 45vh;
+            position: relative;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            padding: 8px;
+            font-size: 16px;
+            width: 100px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .update-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3f009e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .update-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <script>
+        const etiquetas = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+        const initialData = Array(12).fill(0);
+
+        const $grafica = document.querySelector("#grafica");
+
+        const chart = new Chart($grafica, {
+            type: 'line',
+            data: {
+                labels: etiquetas,
+                datasets: [{
+                    label: 'Ahorro Mensual',
+                    data: initialData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2.5
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            const nuevosDatos = meses.map(mes => parseFloat(document.getElementById(mes).value) || 0);
+            chart.data.datasets[0].data = nuevosDatos;
+            chart.update();
+        }
+    </script>
+
+    <div class="main-content">
+        <h2>Gestión de Gastos del Hogar</h2>
+
+        <div class="monthly-summary">
+            <canvas id="expenseChart"></canvas>
+            <p>Total de Gastos: <span id="totalExpenses">$0.00</span></p>
+            <p>Balance: <span id="balance">$0.00</span></p>
+        </div>
+
+        <div class="expense-form">
+            <h3>Registrar Gasto</h3>
+            <form id="expenseForm">
+                <label for="category">Categoría:</label>
+                <select id="category">
+                    <option value="Alimentos">Alimentos</option>
+                    <option value="Vivienda">Vivienda</option>
+                    <option value="Servicios">Servicios</option>
+                    <option value="Ocio">Ocio</option>
+                    <option value="Educación">Educación</option>
+                    <option value="Salud">Salud</option>
+                </select>
+
+                <label for="amount">Monto:</label>
+                <input type="number" id="amount" placeholder="0.00">
+
+                <label for="date">Fecha:</label>
+                <input type="date" id="date">
+
+                <label for="description">Descripción:</label>
+                <input type="text" id="description" placeholder="Descripción del gasto">
+
+                <button type="button" onclick="addExpense()">Agregar Gasto</button>
+            </form>
+        </div>
+
+        <div class="budget-management">
+            <h3>Presupuestos</h3>
+            <form id="budgetForm">
+                <label for="budgetCategory">Categoría:</label>
+                <select id="budgetCategory">
+                    <option value="Alimentos">Alimentos</option>
+                    <option value="Vivienda">Vivienda</option>
+                    <option value="Servicios">Servicios</option>
+                    <option value="Ocio">Ocio</option>
+                    <option value="Educación">Educación</option>
+                    <option value="Salud">Salud</option>
+                </select>
+
+                <label for="budgetAmount">Monto:</label>
+                <input type="number" id="budgetAmount" placeholder="0.00">
+
+                <label for="budgetPeriod">Período:</label>
+                <select id="budgetPeriod">
+                    <option value="Mensual">Mensual</option>
+                    <option value="Anual">Anual</option>
+                </select>
+
+                <button type="button" onclick="addBudget()">Crear Presupuesto</button>
+            </form>
+
+            <div id="activeBudgets">
+                <h4>Presupuestos Activos</h4>
+                <!-- Lista de presupuestos activos -->
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <h2>Educación Financiera</h2>
+
+        <div class="articles-section">
+            <h3>Artículos Recientes</h3>
+            <div class="articles-list">
+                <!-- Lista de artículos recientes -->
+            </div>
+
+            <h4>Categorías</h4>
+            <div class="categories-list">
+                <button onclick="filterArticles('Ahorro')">Ahorro</button>
+                <button onclick="filterArticles('Inversión')">Inversión</button>
+                <button onclick="filterArticles('Deudas')">Deudas</button>
+                <button onclick="filterArticles('Presupuestos')">Presupuestos</button>
+            </div>
+        </div>
+
+        <div class="videos-section">
+            <h3>Videos Educativos</h3>
+            <div class="videos-list">
+                <!-- Lista de videos -->
+            </div>
+        </div>
+
+        <div class="tools-section">
+            <h3>Herramientas Interactivas</h3>
+            <div class="tools-list">
+                <button onclick="openTool('calculadoraAhorro')">Calculadora de Ahorro</button>
+                <button onclick="openTool('simuladorInversiones')">Simulador de Inversiones</button>
+                <button onclick="openTool('calculadoraJubilacion')">Calculadora de Jubilación</button>
+            </div>
+        </div>
+
+        <div class="resources-section">
+            <h3>Recursos Adicionales</h3>
+            <ul>
+                <li><a href="https://blogfinanciero.com" target="_blank">Blog Financiero</a></li>
+                <li><a href="https://cursosfinancieros.com" target="_blank">Cursos Online de Finanzas</a></li>
+                <li><a href="https://librosfinancieros.com" target="_blank">Libros Recomendados</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

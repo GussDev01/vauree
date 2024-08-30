@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vauree: Tu copiloto en Economía Doméstica</title>
+    <link rel="canonical" href="https://vauree.com">
+    <meta property="og:title" content="Vauree: Tu copiloto en Economía Doméstica">
+    <meta property="og:description" content="¡Unete hoy a Vauree!">
+    <meta property="og:url" content="https://vauree.com">
+    <meta property="og:image" content="https://vauree.com/media/contain.png">
+
+    <meta property="og:image:width" content="545" />
+    <meta property="og:image:height" content="493" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://vauree.com/media/contain.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="admin" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles/styles.css"> <!-- Enlazamos nuestro archivo de estilos CSS -->
+    <style>
+        .recommendations {
+            margin: 10px;
+        }
+
+        .recommendations a {
+            color: inherit;
+            /* Mantener el color del texto */
+            text-decoration: none;
+            /* Quitar el subrayado */
+            font-weight: bold;
+            /* Poner en negritas */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const budget = localStorage.getItem('budget');
+            if (budget) {
+                document.querySelector('.budget-display').textContent = formatNumber(budget);
+            }
+        });
+
+        function calculateEarnings(amount, rate) {
+            return amount * rate / 100;
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function showRecommendations() {
+            const savings = parseFloat(document.querySelector('.savings-input').value);
+            let recommendations = "";
+            let annualEarnings = 0;
+
+            if (savings == 0 || savings < 100) {
+                recommendations = `La inversión mínima recomendada es de 100 pesos.`;
+
+            } else if (savings >= 100 && savings < 5000) {
+                const rate = 5;
+                annualEarnings = calculateEarnings(savings, rate);
+                recommendations = `Recomendamos considerar una <a href="https://www.gob.mx/cetesdirecto">cuenta de ahorro tradicional</a> o una inversión en <a href="https://www.gob.mx/cetesdirecto">CETES</a> (Certificados de la Tesorería de la Federación) con una tasa de ${rate}%. Tu ganancia anual sería aproximadamente ${annualEarnings} pesos.`;
+            } else if (savings >= 5000 && savings < 20000) {
+                const rate = 6;
+                annualEarnings = calculateEarnings(savings, rate);
+                recommendations = `Puedes considerar <a href="https://www.gob.mx/cetesdirecto">fondos de inversión en instrumentos de deuda</a> con una tasa de ${rate}%, o <a href="https://www.gob.mx/cetesdirecto">CETES</a>. Tu ganancia anual sería aproximadamente ${annualEarnings} pesos.`;
+            } else if (savings >= 20000 && savings < 100000) {
+                const rate = 7;
+                annualEarnings = calculateEarnings(savings, rate);
+                recommendations = `Considera <a href="https://www.gob.mx/cetesdirecto">fondos de inversión de riesgo moderado</a> con una tasa de ${rate}%, <a href="https://www.gob.mx/cetesdirecto">CETES</a> a más largo plazo, o <a href="https://www.bbva.mx/personas/productos/inversion/pagares.html">depósitos a plazo fijo en bancos</a>. Tu ganancia anual sería aproximadamente ${annualEarnings} pesos.`;
+            } else if (savings >= 100000 && savings < 500000) {
+                const rate = 9;
+                annualEarnings = calculateEarnings(savings, rate);
+                recommendations = `Te recomendamos explorar <a href="https://www.gob.mx/cetesdirecto">fondos de inversión de riesgo moderado a alto</a>, <a href="https://fibrasdesarrollo.mx">inversiones en bienes raíces</a> con una tasa de ${rate}%, o incluso la <a href="https://www.bmv.com.mx">compra de acciones individuales</a>. Tu ganancia anual sería aproximadamente ${annualEarnings} pesos.`;
+            } else {
+                const rate = 10;
+                annualEarnings = calculateEarnings(savings, rate);
+                recommendations = `Para cantidades mayores, considera diversificar entre <a href="https://www.gob.mx/cetesdirecto">fondos de inversión</a>, <a href="https://fibrasdesarrollo.mx">bienes raíces</a>, <a href="https://www.bmv.com.mx">acciones</a>, y otros instrumentos financieros más sofisticados como <a href="https://www.morningstar.com/etfs">ETFs</a> con una tasa de ${rate}%. Tu ganancia anual sería aproximadamente ${annualEarnings} pesos.`;
+            }
+
+            document.querySelector('.recommendations').innerHTML = recommendations;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span class="company-name">Vauree</span>
+    </div>
+    <div class="content">
+        <p class="titulo">Tu presupuesto mensual es: <span class="budget-display"></span></p>
+        <p class="prompt">¿Cuánto ahorraste en el último mes?</p>
+        <div class="input-block">
+            <input type="text" class="savings-input" placeholder="Ingresa la cantidad ahorrada">
+        </div>
+        <button class="recomendar-btn" onclick="showRecommendations()">Aceptar</button>
+        <p class="recommendations"></p>
+    </div>
+
+</body>
+
+</html>

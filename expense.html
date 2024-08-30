@@ -1,0 +1,70 @@
+<div class="main-content">
+    <h2>Gestión de Gastos del Hogar</h2>
+
+    <div class="monthly-summary">
+        <canvas id="expenseChart"></canvas>
+        <p>Total de Gastos: <span id="totalExpenses">$0.00</span></p>
+        <p>Balance: <span id="balance">$0.00</span></p>
+    </div>
+
+    <div class="expense-form">
+        <h3>Registrar Gasto</h3>
+        <form id="expenseForm">
+            <label for="category">Categoría:</label>
+            <select id="category">
+                <option value="Alimentos">Alimentos</option>
+                <option value="Vivienda">Vivienda</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Ocio">Ocio</option>
+                <option value="Educación">Educación</option>
+                <option value="Salud">Salud</option>
+            </select>
+
+            <label for="amount">Monto:</label>
+            <input type="number" id="amount" placeholder="0.00">
+
+            <label for="date">Fecha:</label>
+            <input type="date" id="date">
+
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" placeholder="Descripción del gasto">
+
+            <button type="button" onclick="addExpense()">Agregar Gasto</button>
+        </form>
+    </div>
+
+    <div class="budget-management">
+        <h3>Presupuestos</h3>
+        <form id="budgetForm">
+            <label for="budgetCategory">Categoría:</label>
+            <select id="budgetCategory">
+                <option value="Alimentos">Alimentos</option>
+                <option value="Vivienda">Vivienda</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Ocio">Ocio</option>
+                <option value="Educación">Educación</option>
+                <option value="Salud">Salud</option>
+            </select>
+
+            <label for="budgetAmount">Monto:</label>
+            <input type="number" id="budgetAmount" placeholder="0.00">
+
+            <label for="budgetPeriod">Período:</label>
+            <select id="budgetPeriod">
+                <option value="Mensual">Mensual</option>
+                <option value="Anual">Anual</option>
+            </select>
+
+            <button type="button" onclick="addBudget()">Crear Presupuesto</button>
+        </form>
+
+        <div id="activeBudgets">
+            <h4>Presupuestos Activos</h4>
+            <!-- Lista de presupuestos activos -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lógica JavaScript para gestionar los gastos y presupuestos
+</script>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Vauree: Tu copiloto en Economía Doméstica</title>
+    <link rel="canonical" href="https://vauree.com">
+    <meta property="og:title" content="Vauree: Tu copiloto en Economía Doméstica">
+    <meta property="og:description" content="¡Unete hoy a Vauree!">
+    <meta property="og:url" content="https://vauree.com">
+    <meta property="og:image" content="https://vauree.com/media/contain.png">
+    <meta property="og:image:width" content="545" />
+    <meta property="og:image:height" content="493" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://vauree.com/media/contain.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Gustavo Del Angel" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body,
+        html {
+            max-width: 100vw;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        body {
+            background-image: url('https://vauree.com/media/wall1.png');
+            background-color: rgb(1, 1, 27);
+            background-size: 580px 1160px, cover;
+            background-position: center -210px;
+            background-repeat: no-repeat;
+
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: left;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+
+        .content {
+            margin-top: 13%;
+            text-align: center;
+            font-family: "Raleway", sans-serif;
+            font-kerning: auto;
+            font-weight: 420;
+            font-style: normal;
+            min-height: 300px;
+        }
+
+        .content img {
+            display: absolute;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .titulo {
+            font-size: 29px;
+            font-weight: 490;
+        }
+
+        .info {
+            font-size: 17px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .prompt {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .input-block {
+            width: 300px;
+            height: 100px;
+            margin-bottom: 20px;
+            background-color: rgba(60, 47, 82, 0.489);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .budget-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid rgb(158, 8, 239);
+            border-radius: 10px;
+            background-color: rgb(10, 1, 17);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .empezar-btn {
+            width: 110px;
+            height: 40px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #0D0A59;
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            border-radius: 18px;
+        }
+
+        .season-btn {
+
+            color: white;
+            background-color: #FE007D;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 420;
+
+
+            display: inline-block;
+            margin: 20px 0px;
+            padding: 10px 20px;
+            font-size: 18px;
+
+        }
+
+        .information {
+            align-items: center;
+            text-align: center;
+            font-family: "Raleway", sans-serif;
+            font-style: normal;
+        }
+
+        .item svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .item svg path {
+            fill: #6b0ae9
+        }
+
+        /* Main.html */
+
+        /*edu and expense*/
+        .main-content {
+            width: 90%;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .monthly-summary,
+        .expense-form,
+        .budget-management,
+        .articles-section,
+        .videos-section,
+        .tools-section,
+        .resources-section {
+            margin: 0px 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background-color: #3f009e;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 10px;
+            }
+
+            .input-block {
+                width: 90%;
+            }
+        }
+
+        .icon-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            align-items: center;
+            position: relative;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .footer {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            margin: 0px 0px 0px 0px;
+
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            flex: 1;
+            text-align: left;
+        }
+
+        .footer-right {
+            flex: 1;
+            text-align: right;
+        }
+
+        .footer-right .social-media {
+            margin-bottom: 10px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-size: contain;
+            margin: 0 5px;
+        }
+
+        .instagram {
+            background-image: url('instagram-icon.png');
+        }
+
+        .facebook {
+            background-image: url('facebook-icon.png');
+        }
+
+        .app-store {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .app-store img {
+            width: 150px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .coming-soon {
+            display: block;
+            font-size: 0.8em;
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-left,
+            .footer-right {
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
+    </style>
+    <script>
+        function redirectToMain() {
+            const budget = document.querySelector('.budget-input').value;
+            localStorage.setItem('budget', budget);
+            window.location.href = 'https://vauree.com/main.html'; // Redirige hacia main
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span class="company-name">Vauree</span>
+    </div>
+    <div class="content">
+        <p class="titulo">Tu copiloto en </p>
+        <svg width="100%" height="60" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#ff1884;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#B700F1;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#5482fe;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <text x="50%" y="50" font-size="50" font-family="Raleway" fill="url(#gradient1)" font-weight="bold"
+                text-anchor="middle">Economía Doméstica</text>
+        </svg>
+        <p class="info">Descubre la mejor manera de direccionar tus ingresos.</p>
+        <p class="prompt">¿Cuál es tu ingreso mensual?</p>
+        <div class="input-block">
+            <input type="text" class="budget-input" placeholder="Ingresa tu presupuesto">
+        </div>
+        <button class="empezar-btn" onclick="redirectToMain()">Empezar</button>
+
+        <p class="info">Estrategias que te guiarán en el camino en tu Economía de forma <strong
+                class="gradient">interactiva.</strong></p>
+        <nav class="icon-container">
+            <img class="grafica" src="media/grafica-semanal.svg" alt="semanal" width="500px">
+        </nav>
+        <h4>Calcula el ahorro y las mejores opciones de inversión según tu capital y mide tu progreso.</h4>
+
+        <a class="season-btn" href="https://vauree.com/temporada/frutas">El mejor momento para comprar</a>
+
+
+
+        <div class="header2">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h2>Vauree</h2>
+                    <p>hola@vauree.com</p>
+                </div>
+                <div class="footer-right">
+                    <div class="social-media">
+                        <a href="#" class="social-icon instagram"></a>
+                        <a href="#" class="social-icon facebook"></a>
+                    </div>
+                    <nav class="icon-container">
+                        <p class="info">App para iOS en proceso.</p>
+                        <a href="https://www.apple.com/mx/app-store/">
+                            <img class="grafica" src="media/appstore.svg" alt="appstore" width="240px">
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vauree. Or its affiliates. All rights reserved.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

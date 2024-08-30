@@ -1,0 +1,243 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('ruta/a/raleway.woff2') format('woff2'),
+        url('ruta/a/raleway.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    /* Opcional: usa "swap" para una mejor experiencia de usuario */
+}
+
+body {
+    background-image: url('https://vauree.com/media/wall.png');
+    background-color: rgb(1, 1, 27);
+    /* Ruta de la imagen de fondo */
+    background-size: contain;
+    text-decoration: none;
+    /* Ajusta la imagen para cubrir toda la pantalla */
+    padding-left: 2%;
+    padding-right: 2%;
+    background-position-y: -55%;
+    /* Centra la imagen de fondo */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    color: #ffffff;
+    /* Color de texto blanco */
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Altura completa del viewport */
+    position: relative;
+
+}
+
+canvas {
+    display: flex;
+}
+
+.header {
+    position: absolute;
+    /* Posiciona el encabezado de forma absoluta */
+    top: 10px;
+    /* Distancia desde la parte superior */
+    left: 10px;
+    /* Distancia desde la parte izquierda */
+    display: flex;
+    /* Utiliza flexbox para alinear el logo y el nombre */
+    align-items: center;
+    /* Alinear verticalmente al centro */
+}
+
+.logo {
+    width: 50px;
+    /* Ancho del logo */
+    height: auto;
+    /* Ajuste automático de la altura */
+    /* Espacio entre el logo y el nombre */
+}
+
+.company-name {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 10px;
+    /* Tamaño del texto del nombre de la empresa */
+    color: #ffffff;
+    /* Color del texto */
+}
+
+.content {
+    margin-top: 0px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-kerning: auto;
+    font-weight: 420;
+    font-style: normal;
+    min-height: 300px;
+    /* Ajusta este valor según sea necesario */
+}
+
+.content img {
+    display: block;
+    /* Evita el espacio en línea debajo de las imágenes */
+    max-width: 100%;
+    /* Asegura que las imágenes no excedan el ancho de su contenedor */
+    height: auto;
+    /* Mantiene la proporción de aspecto de la imagen */
+}
+
+.titulo {
+    font-size: 29px;
+    /* Tamaño del texto de la pregunta */
+    font-weight: 490;
+}
+
+.info {
+    font-size: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.prompt {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.input-block {
+    width: 300px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(60, 47, 82, 0.489);
+    border-radius: 10px;
+}
+
+.budget-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgb(158, 8, 239);
+    border-radius: 10px;
+    background-color: rgb(10, 1, 17);
+    color: #ffffff;
+    /* Bordes redondeados del input */
+    text-align: center;
+    /* Alinear texto al centro */
+}
+
+.empezar-btn {
+    width: 110px;
+    /* Ancho del botón */
+    height: 40px;
+    /* Alto del botón */
+    font-size: 16px;
+    /* Tamaño del texto dentro del botón */
+    background-color: #4743ad;
+    /* Color de fondo del botón (azul en este caso) */
+    color: rgb(255, 255, 255);
+    /* Color del texto del botón */
+    border: none;
+    /* Quitamos el borde */
+    cursor: pointer;
+    /* Cambiamos el cursor al pasar por encima */
+    border-radius: 18px;
+    /* Añadimos esquinas redondeadas */
+}
+
+.season-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.information {
+    align-items: center;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-style: normal;
+}
+
+.item svg {
+    width: 40px;
+    height: 40px;
+}
+
+.item svg path {
+    fill: #6b0ae9
+}
+
+/* Main.html */
+
+/*edu and expense*/
+
+.main-content {
+    width: 90%;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+}
+
+.monthly-summary,
+.expense-form,
+.budget-management,
+.articles-section,
+.videos-section,
+.tools-section,
+.resources-section {
+    margin: 20px 0;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+input,
+select,
+button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #3f009e;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .content {
+        padding: 10px;
+    }
+
+    .input-block {
+        width: 90%;
+    }
+
+    .empezar-btn {
+        width: 100%;
+    }
+}

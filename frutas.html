@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporada</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="logo.png" alt="" class="logo">
+        <span class="company-name">Vauree</span>
+
+    </div>
+    <p>El mejor momento para comprar</p>
+    <br>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://vauree.com/media/wall2.png');
+            background-color: rgb(1, 1, 27);
+            /* Ruta de la imagen de fondo */
+            background-size: contain;
+            /* Ajusta la imagen para cubrir toda la pantalla */
+
+            background-position-y: 165%;
+
+            /* Centra la imagen de fondo */
+            background-repeat: no-repeat;
+
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            margin-top: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 0px;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+
+        .chart-container {
+            width: 90%;
+            height: 45vh;
+            /* Ajusta esta altura según sea necesario */
+            position: relative;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .filter-button {
+            margin: 5px;
+            padding: 8px 16px;
+            width: 110px;
+            /* Ancho del botón */
+            height: 40px;
+            /* Alto del botón */
+            font-size: 16px;
+            /* Tamaño del texto dentro del botón */
+            background-color: #3f009e;
+            /* Color de fondo del botón (azul en este caso) */
+            color: rgb(255, 255, 255);
+            /* Color del texto del botón */
+            border: none;
+            /* Quitamos el borde */
+            cursor: pointer;
+            /* Cambiamos el cursor al pasar por encima */
+            border-radius: 18px;
+            /* Añadimos esquinas redondeadas */
+        }
+
+        .filter-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="chart-container">
+        <canvas id="grafica"></canvas>
+    </div>
+
+    <div class="button-container">
+        <button class="filter-button" onclick="filterData('Mango')">Mango</button>
+        <button class="filter-button" onclick="filterData('Sandia')">Sandia</button>
+        <button class="filter-button" onclick="filterData('Naranja')">Naranja</button>
+        <!-- Nuevos botones -->
+        <button class="filter-button" onclick="filterData('Fresa')">Fresa</button>
+        <button class="filter-button" onclick="filterData('Manzana')">Manzana</button>
+        <button class="filter-button" onclick="filterData('Pera')">Pera</button>
+        <button class="filter-button" onclick="filterData('Uva')">Uva</button>
+        <button class="filter-button" onclick="filterData('Piña')">Piña</button>
+        <button class="filter-button" onclick="filterData('Melon')">Melon</button>
+        <button class="filter-button" onclick="filterData('Papaya')">Papaya</button>
+        <button class="filter-button" onclick="filterData('Cereza')">Cereza</button>
+        <button class="filter-button" onclick="filterData('Plátano')">Plátano</button>
+        <button class="filter-button" onclick="filterData('Frambuesa')">Frambuesa</button>
+        <button class="filter-button" onclick="filterData('Durazno')">Durazno</button>
+        <button class="filter-button"
+            onclick="window.location.href='https://vauree.com/temporada/frutas'"><strong>Todas</strong></button>
+
+    </div>
+
+    <script>
+        const $grafica = document.querySelector("#grafica");
+        const etiquetas = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+        const datosFrutas = [
+            { label: "Mango", data: [10, 10, 10, 70, 80, 100, 100, 90, 70, 40, 20, 10], color: 'rgba(211,93,110, 1)' },
+            { label: "Sandia", data: [10, 10, 20, 30, 40, 70, 90, 100, 100, 80, 50, 20], color: 'rgba(209,234,163,1)' },
+            { label: "Naranja", data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 20, 50, 80], color: 'rgba(54, 162, 235, 1)' },
+            // Nuevas frutas
+            { label: "Fresa", data: [10, 20, 70, 90, 100, 100, 60, 40, 20, 10, 10, 10], color: 'rgba(255, 99, 132, 1)' },
+            { label: "Manzana", data: [10, 10, 10, 20, 40, 60, 70, 80, 100, 100, 90, 50], color: 'rgba(255, 159, 64, 1)' },
+            { label: "Pera", data: [10, 10, 10, 20, 30, 40, 60, 70, 80, 90, 100, 100], color: 'rgba(255, 205, 86, 1)' },
+            { label: "Uva", data: [10, 10, 10, 20, 30, 40, 60, 70, 80, 90, 100, 100], color: 'rgba(75, 192, 192, 1)' },
+            { label: "Piña", data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 20, 50, 80], color: 'rgba(153, 102, 255, 1)' },
+            { label: "Melon", data: [10, 10, 20, 30, 40, 70, 90, 100, 100, 80, 50, 20], color: 'rgba(255, 159, 255, 1)' },
+            { label: "Papaya", data: [100, 100, 90, 80, 70, 60, 50, 40, 30, 20, 20, 50], color: 'rgba(54, 162, 135, 1)' },
+            { label: "Cereza", data: [10, 10, 10, 20, 30, 60, 80, 100, 100, 90, 50, 30], color: 'rgba(255, 206, 86, 1)' },
+            { label: "Plátano", data: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80], color: 'rgba(75, 192, 99, 1)' },
+            { label: "Frambuesa", data: [10, 10, 20, 30, 40, 70, 90, 100, 100, 80, 50, 30], color: 'rgba(153, 102, 64, 1)' },
+            { label: "Durazno", data: [10, 10, 20, 30, 50, 70, 100, 100, 90, 80, 50, 30], color: 'rgba(255, 159, 128, 1)' }
+        ];
+
+
+
+
+
+        let currentDataset = [...datosFrutas]; // Copia de todos los datos al inicio
+
+        const datasets = datosFrutas.map(fruta => ({
+            label: `${fruta.label}`,
+            data: fruta.data,
+            backgroundColor: fruta.color.replace('1)', '0.2)'),
+            borderColor: fruta.color,
+            borderWidth: 2.5,
+            hidden: false // Todas las frutas visibles al inicio
+        }));
+
+        const chart = new Chart($grafica, {
+            type: 'line',
+            data: {
+                labels: etiquetas,
+                datasets: datasets
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        function filterData(fruta) {
+            // Ocultar todas las frutas
+            chart.data.datasets.forEach(dataset => {
+                dataset.hidden = true;
+            });
+
+            // Mostrar solo la fruta seleccionada
+            const selectedDataset = chart.data.datasets.find(dataset => dataset.label === fruta);
+            if (selectedDataset) {
+                selectedDataset.hidden = false;
+            }
+
+            chart.update(); // Actualizar la gráfica
+        }
+    </script>
+</body>
+
+</html>
